@@ -3,18 +3,19 @@
  *_printf - prints formatted output to the standard output.
  * @format: format string.
  * @...: a variable number of arguments to be printed.
+ * Return: cha_print
  */
-int _print(const char *format, ...)
+int _printf(const char *format, ...);
 {
 	va_list arg_list;
 	int cha_print = 0;
 
 	if (format == NULL)
-		return -1;
+		return (-1);
 
 	va_start(arg_list, format);
 
-	while(*format)
+	while (*format)
 	{
 		if (*format != '%')
 		{
@@ -27,6 +28,7 @@ int _print(const char *format, ...)
 			if (*format == 'c')
 			{
 				char c = va_arg(arg_list, int);
+
 				write(1, &c, 1);
 				cha_print++;
 			}
