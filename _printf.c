@@ -67,7 +67,7 @@ int _putnbr(int n)
  *_printf - prints formatted output to the standard output.
  * @format: format string.
  * @...: a variable number of arguments to be printed.
- * Return: cha_print
+ * Return: Number of characters printed
  */
 int _printf(const char *format, ...)
 {
@@ -76,7 +76,9 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
+
 	va_start(arg_list, format);
+
 	while (*format)
 	{
 		if (*format != '%')
@@ -105,7 +107,7 @@ int _printf(const char *format, ...)
 			{
 				cha_print += _putnbr(va_arg(arg_list, int));
 		}
-		}
+	}
 		format++;
 	}
 	va_end(arg_list);
