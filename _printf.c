@@ -96,13 +96,15 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 				char *strg = va_arg(arg_list, char*);
-				int str_len = 0;
+				int str_len = strlen(strg);
 
 				write(1, strg, str_len);
 				cha_print += str_len;
 			}
 			else if (*format == 'd' || *format == 'i')
+			{
 				cha_print += _putnbr(va_arg(arg_list, int));
+		}
 		}
 		format++;
 	}
