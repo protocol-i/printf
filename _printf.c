@@ -104,8 +104,8 @@ int _printf(const char *format, ...)
 			else if (*format == 'd' || *format == 'i')
 			{
 				cha_print += _putnbr(va_arg(arg_list, int));
+			}
 		}
-	}
 		format++;
 	}
 	va_end(arg_list);
