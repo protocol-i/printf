@@ -13,14 +13,11 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-
 	va_start(arg_list, format);
 	while (*format)
 	{
 		if (*format != '%')
-		{
 			cha_print += write(1, format, 1);
-		}
 		else
 		{
 			format++;
@@ -40,14 +37,10 @@ int _printf(const char *format, ...)
 				char *strg = va_arg(arg_list, char*);
 				if (strg == NULL)
 					strg = "(null)";
-				int str_len = strlen(strg);
-				cha_print += write(1, strg, str_len);
+				cha_print += write(1, strg,strlen(strg));
 			}
 			else if (*format == 'd' || *format == 'i')
-			{
 				cha_print += _putnbr(va_arg(arg_list, int));
-				cha_print += _putnbr(num);
-			}
 		}
 		format++;
 	}

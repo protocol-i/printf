@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * _putnbr - Print an integer to the standard output.
  * @n: The integer to be printed.
