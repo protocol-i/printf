@@ -13,16 +13,21 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
+
 	va_start(arg_list, format);
 	while (*format)
 	{
 		if (*format != '%')
+		{
 			cha_print += write(1, format, 1);
+		}
 		else
 		{
 			format++;
 			if (*format == '%')
+			{
 				cha_print += write(1, "%", 1);
+			}
 			else if (*format == 'c')
 			{
 				char c = va_arg(arg_list, int);
@@ -33,14 +38,15 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 				char *strg = va_arg(arg_list, char*);
+				if (strg == NULL)
+					strg = "(null)";
 				int str_len = strlen(strg);
-
-				write(1, strg, str_len);
-				cha_print += str_len;
+				cha_print += write(1, strg, str_len);
 			}
 			else if (*format == 'd' || *format == 'i')
 			{
 				cha_print += _putnbr(va_arg(arg_list, int));
+				cha_print += _putnbr(num);
 			}
 		}
 		format++;
