@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stddef.h>
+#include <stdio.h>
 
 typedef struct printf_utils {
 	int (*_size)(unsigned int);
