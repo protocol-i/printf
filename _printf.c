@@ -25,7 +25,7 @@ int _printf(const char *format, ...)
 		}
 
 		format++;
-		if (*format == '\0') /* Handle trailing '%' */
+		if (*format == '\0')
 		{
 			cha_print += write(1, "%", 1);
 			break;
