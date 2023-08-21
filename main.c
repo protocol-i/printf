@@ -9,15 +9,15 @@
  */
 int main(void)
 {
-    int len;
-    int len2;
-    unsigned int ui;
-    void *addr;
-    char *s = NULL;
+	int len;
+	int len2;
+	unsigned int ui;
+	void *addr;
+	char *s = NULL;
 
-    len = _printf("Let's try to printf a simple sentence.\n");
-    len2 = printf("Let's try to printf a simple sentence.\n");
-    ui = (unsigned int)INT_MAX + 1024;
+	len = _printf("Let's try to printf a simple sentence.\n");
+	len2 = printf("Let's try to printf a simple sentence.\n");
+	ui = (unsigned int)INT_MAX + 1024;
     addr = (void *)0x7ffe637541f0;
     len = printf("test null: %s\n",s);
     len2 = _printf("test null: %s\n",s);

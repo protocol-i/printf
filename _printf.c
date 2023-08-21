@@ -88,10 +88,9 @@ int _printf(const char *format, ...)
 				cha_print += write(1, "%", 1);
 			else if (*format == 'c')
 			{
-				char c = va_arg(arg_list, int);
+				char c  = va_arg(arg_list, int);
 
-				write(1, &c, 1);
-				cha_print++;
+				cha_print += write(1, &c, 1);
 			}
 			else if (*format == 's')
 			{
@@ -99,7 +98,8 @@ int _printf(const char *format, ...)
 
 				if (strg == NULL)
 					strg = "(null)";
-				cha_print += write(1, strg, strlen(strg));
+				while (*strg != '\0')
+					cha_print += write(1, strg++, 1);
 			}
 			else if (*format == 'd' || *format == 'i')
 				cha_print += _putnbr(va_arg(arg_list, int));
