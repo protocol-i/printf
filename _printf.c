@@ -96,6 +96,7 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 				char *strg = va_arg(arg_list, char*);
+
 				if (strg == NULL)
 					strg = "(null)";
 				cha_print += write(1, strg, strlen(strg));
