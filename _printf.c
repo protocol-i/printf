@@ -81,12 +81,12 @@ int _printf(const char *format, ...)
 	{
 		if (*format != '%')
 			cha_print += write(1, format, 1);
+		else if (*format == '%' && (*(format + 1) == ' ' || *(format + 1) == '\0'))
+				return (-1);
 		else
 		{
-			format++;
-			if (*format == '%' && *(format + 1) == ' ')
-				return (-1);	
-			else if (*format == '%')
+			format++;	
+			if (*format == '%')
 				cha_print += write(1, "%", 1);
 			else if (*format == 'c')
 			{
