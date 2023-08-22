@@ -84,6 +84,8 @@ int _printf(const char *format, ...)
 		else
 		{
 			format++;
+			if (*format == '\0')
+				break;
 			if (*format == '%')
 				cha_print += write(1, "%", 1);
 			else if (*format == 'c')
