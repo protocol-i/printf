@@ -87,7 +87,7 @@ int _printf(const char *format, ...)
 			if (*format == '%')
 				cha_print += write(1, "%", 1);
 			else if (*format == 'r')
-				cha_print += write(1, "r", 1);
+				cha_print += write(1, "%r", 2);
 			else if (*format == 'c')
 			{
 				char c  = va_arg(arg_list, int);
