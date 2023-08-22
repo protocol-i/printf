@@ -62,29 +62,6 @@ int _putnbr(int n)
 	number = NULL;
 	return (len);
 }
-
-/**
- * _binary - Convert an unsigned integer to its binary representation and print it.
- * @num: The unsigned integer to convert.
- *
- * Return: The number of characters printed.
- */
-int _binary(unisgned int num)
-{
-	int binary[32];
-	int index = 0;
-        while (num > 0)
-	{
-		binary[index] = num % 2;
-		num /= 2;
-		index++;
-	}
-        for (int i = index - 1; i >= 0; i--)
-	{
-		count += _putchar('0' + binary[i]);
-        }
-	return (count);
-}
 /**
  *_printf - prints formatted output to the standard output.
  * @format: format string.
@@ -108,8 +85,6 @@ int _printf(const char *format, ...)
 			format++;
 			if (*format == '%')
 				cha_print += write(1, "%", 1);
-			else if (*format == 'b')
-				cha_print += _binary(va_arg(arg_list, unsigned int));
 			else if (*format == 'c')
 			{
 				char c  = va_arg(arg_list, int);
