@@ -84,6 +84,26 @@ int print_specifier(char specifier, va_list arg_list)
 	{
 		cha_print += _putchar('%');
 	}
+	else if (specifier == 'u')
+	{
+		unsigned int u_value = va_arg(arg_list, unsigned int);
+		cha_print += print_unsigned(u_value);
+	}
+	else if (specifier == 'x')
+	{
+		unsigned int x_value = va_arg(arg_list, unsigned int);
+                    cha_print += print_hex_lower(x_value);
+	}
+	else if (specifier == 'o')
+	{
+		unsigned int o_value = va_arg(arg_list, unsigned int);
+		cha_print += print_octal(o_value);
+	}
+	else if (specifier == 'X')
+	{
+		unsigned int X_value = va_arg(arg_list, unsigned int);
+		cha_print += print_hex_upper(X_value);
+	}
 	else
 	{
 		cha_print += _putchar('%');
