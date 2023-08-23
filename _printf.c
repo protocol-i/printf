@@ -1,73 +1,104 @@
 #include "main.h"
 
 /**
- * _size - Calculate the number of digits in a positive integer.
- * @nb: The unsigned integer for which to calculate the size.
+ * _putchar - Write a character to stdout.
+ * @c: The character to write.
  *
- * Return: The size (number of digits) of the integer.
+ * Return: On success, the number of characters written.
  */
-int _size(unsigned int nb)
+int _putchar(char c)
 {
-	int size = 0;
-
-	while (nb > 0)
-	{
-		size++;
-		nb = nb / 10;
-	}
-	return (size);
+	return (write(1, &c, 1));
 }
 
 /**
- * _putnbr - Print an integer to the standard output.
- * @n: The integer to be printed.
+ * _putstr - Write a string to stdout.
+ * @str: The string to write.
  *
- * Return: The number of characters printed.
+ * Return: On success, the number of characters written.
  */
-int _putnbr(int n)
+int _putstr(const char *str)
 {
-	char *number;
-	unsigned int nbr;
 	int len = 0;
-	int size;
 
-	if (n == 0)
-		return (write(1, "0", 1));
-	if (n < 0)
+	while (*str)
 	{
+		_putchar(*str);
+		str++;
 		len++;
-		write(1, "-", 1);
-		nbr = n * (-1);
 	}
-	else
-		nbr = n;
-	size = _size(nbr);
-	len += size;
-	number = (char *)malloc((size + 1) * sizeof(char));
-	if (!number)
-		return (0);
-	number[size--] = '\0';
-	while (nbr > 0)
-	{
-		number[size--] = (nbr % 10) + '0';
-		nbr = nbr / 10;
-	}
-	size = 0;
-	while (number[size])
-	{
-		write(1, &number[size], 1);
-		size++;
-	}
-	free(number);
-	number = NULL;
 	return (len);
 }
 
 /**
- *_printf - prints formatted output to the standard output.
- * @format: format string.
- * @...: a variable number of arguments to be printed.
- * Return: Number of characters printed
+ * _putnbr_binary - Print an integer in binary to stdout.
+ * @n: The integer to be printed.
+ *
+ * Return: On success, the number of characters written.
+ */
+int _putnbr_binary(unsigned int n)
+{
+	if (n / 2 != 0)
+		_putnbr_binary(n / 2);
+	return (_putchar((n % 2 == 0 ? '0' : '1')));
+}
+
+/**
+ * print_specifier - Handle specific specifiers.
+ * @specifier: The specifier character.
+ * @arg_list: The va_list of arguments.
+ *
+ * Return: Number of characters printed.
+ */
+int print_specifier(char specifier, va_list arg_list)
+{
+	int cha_print = 0;
+
+	if (specifier == 'c')
+	{
+		char c = va_arg(arg_list, int);
+
+		cha_print += _putchar(c);
+	}
+	else if (specifier == 's')
+	{
+		char *strg = va_arg(arg_list, char *);
+
+		if (strg == NULL)
+			strg = "(null)";
+		cha_print += _putstr(strg);
+	}
+	else if (specifier == 'd' || specifier == 'i')
+	{
+		int num = va_arg(arg_list, int);
+
+		cha_print += _putnbr(num);
+	}
+	else if (specifier == 'b')
+	{
+		unsigned int num = va_arg(arg_list, unsigned int);
+
+		cha_print += _putnbr_binary(num);
+	}
+	else if (specifier == '%')
+	{
+		cha_print += _putchar('%');
+	}
+	else
+	{
+		cha_print += _putchar('%');
+		cha_print += _putchar(specifier);
+	}
+
+	return (cha_print);
+}
+
+/**
+ * _printf - Prints formatted output to the standard output.
+ * @format: Format string.
+ * @...: A variable number of arguments to be printed.
+ *
+ * Return: Number of characters printed.
  */
 int _printf(const char *format, ...)
 {
@@ -76,36 +107,20 @@ int _printf(const char *format, ...)
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
+
 	va_start(arg_list, format);
 	while (*format)
 	{
 		if (*format != '%')
-			cha_print += write(1, format, 1);
+			cha_print += _putchar(*format);
 		else
 		{
 			format++;
-			if (*format == '%')
-				cha_print += write(1, "%", 1);
-			else if (*format == 'c')
-			{
-				char c  = va_arg(arg_list, int);
-
-				cha_print += write(1, &c, 1);
-			}
-			else if (*format == 's')
-			{
-				char *strg = va_arg(arg_list, char*);
-
-				if (strg == NULL)
-					strg = "(null)";
-				while (*strg != '\0')
-					cha_print += write(1, strg++, 1);
-			}
-			else if (*format == 'd' || *format == 'i')
-				cha_print += _putnbr(va_arg(arg_list, int));
+			cha_print += print_specifier(*format, arg_list);
 		}
 		format++;
 	}
 	va_end(arg_list);
+
 	return (cha_print);
 }
