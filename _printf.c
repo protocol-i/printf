@@ -92,7 +92,6 @@ int print_specifier(char specifier, va_list arg_list)
 
 	return (cha_print);
 }
-
 /**
  * _printf - Prints formatted output to the standard output.
  * @format: Format string.

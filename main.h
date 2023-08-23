@@ -4,9 +4,7 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include <string.h>
 #include <stddef.h>
-#include <stdio.h>
 
 int _putnbr(int n);
 int _printf(const char *format, ...);
