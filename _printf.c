@@ -31,19 +31,6 @@ int _putstr(const char *str)
 }
 
 /**
- * _putnbr_binary - Print an integer in binary to stdout.
- * @n: The integer to be printed.
- *
- * Return: On success, the number of characters written.
- */
-int _putnbr_binary(unsigned int n)
-{
-	if (n / 2 != 0)
-		_putnbr_binary(n / 2);
-	return (_putchar((n % 2 == 0 ? '0' : '1')));
-}
-
-/**
  * print_specifier - Handle specific specifiers.
  * @specifier: The specifier character.
  * @arg_list: The va_list of arguments.
