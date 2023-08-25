@@ -69,10 +69,7 @@ int print_specifier(char specifier, va_list arg_list)
 	else if (specifier == 'x')
 	{
 		unsigned int x_value = va_arg(arg_list, unsigned int);
-<<<<<<< HEAD
-=======
 
->>>>>>> 8f0b8e662081036999cb0c6211c5498ed93fd08c
 		cha_print += print_hex_lower(x_value);
 	}
 	else if (specifier == 'o')
@@ -126,8 +123,6 @@ int _printf(const char *format, ...)
 
 	return (cha_print);
 }
-<<<<<<< HEAD
-=======
 
 /**
  * _print_number - Print an integer
@@ -199,4 +194,3 @@ int print_int(va_list args, const char *flags)
 	count += _print_number(num);
 	return (count);
 }
->>>>>>> 8f0b8e662081036999cb0c6211c5498ed93fd08c
