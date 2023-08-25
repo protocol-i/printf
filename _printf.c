@@ -122,3 +122,77 @@ int _printf(const char *format, ...)
 	va_end(arg_list);
 	return (cha_print);
 }
+<<<<<<< HEAD
+=======
+
+/**
+ * _print_number - Print an integer
+ * @n: The integer to be printed
+ *
+ * Return: Number of digits printed
+ */
+int _print_number(int n)
+{
+	int count = 0;
+	int reversed = 0;
+
+	if (n == 0)
+	{
+		count += _putchar('0');
+		return (count);
+	}
+	if (n < 0)
+	{
+		count += _putchar('-');
+		n = -n;
+	}
+	while (n > 0)
+	{
+		reversed = reversed * 10 + n % 10;
+		n /= 10;
+	}
+	while (reversed > 0)
+	{
+		count += _putchar(reversed % 10 + '0');
+		reversed /= 10;
+	}
+	return (count);
+}
+
+/**
+ * print_int - Prints an integer with flags
+ * @args: The va_list containing the integer to print
+ * @flags: The flags to apply
+ *
+ * Return: The number of characters printed
+ */
+int print_int(va_list args, const char *flags)
+{
+	int num = va_arg(args, int);
+	int count = 0;
+
+	if (flags)
+	{
+		while (*flags)
+		{
+			if (*flags == '+')
+			{
+				if (num >= 0)
+					count += _putchar('+');
+			}
+			else if (*flags == ' ')
+			{
+				if (num >= 0)
+					count += _putchar(' ');
+			}
+			else if (*flags == '#')
+			{
+				count += _putchar('#');
+			}
+			flags++;
+		}
+	}
+	count += _print_number(num);
+	return (count);
+}
+>>>>>>> ffb4fd2e6ed02b2ebe3e34d0bae26c560b17e30b
