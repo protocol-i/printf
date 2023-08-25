@@ -20,6 +20,7 @@ int handle_S_specifier(va_list arg_list)
 		{
 			cha_print += _putchar('\\');
 			cha_print += _putchar('x');
+			cha_print += _putchar('0');
 			cha_print += _putchar(to_hex_digit((*strg >> 4) & 0xF));
 			cha_print += _putchar(to_hex_digit(*strg & 0xF));
 		}
