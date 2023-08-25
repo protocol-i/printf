@@ -139,34 +139,30 @@ int _printf(const char *format, ...)
  */
 int _print_number(int n)
 {
-    int count = 0;
-    int reversed = 0;
+	int count = 0; 
+	int reversed = 0;
 
-    if (n == 0)
-    {
-        count += _putchar('0');
-        return count;
-    }
-
-    if (n < 0)
-    {
-        count += _putchar('-');
-        n = -n;
-    }
-
-    while (n > 0)
-    {
-        reversed = reversed * 10 + n % 10;
-        n /= 10;
-    }
-
-    while (reversed > 0)
-    {
-        count += _putchar(reversed % 10 + '0');
-        reversed /= 10;
-    }
-
-    return count;
+	if (n == 0)
+	{
+		count += _putchar('0');
+		return count;
+	}
+	if (n < 0)
+	{
+		count += _putchar('-');
+		n = -n;
+	}
+	while (n > 0)
+	{
+		reversed = reversed * 10 + n % 10;
+		n /= 10;
+	}
+	while (reversed > 0)
+	{
+		count += _putchar(reversed % 10 + '0');
+		reversed /= 10;
+	}
+	return count;
 }
 
 /**
@@ -178,33 +174,30 @@ int _print_number(int n)
  */
 int print_int(va_list args, const char *flags)
 {
-    int num = va_arg(args, int);
-    int count = 0;
+	int num = va_arg(args, int);
+	int count = 0;
 
-    if (flags)
-    {
-        while (*flags)
-        {
-            if (*flags == '+')
-            {
-                if (num >= 0)
-                    count += _putchar('+');
-            }
-            else if (*flags == ' ')
-            {
-                if (num >= 0)
-                    count += _putchar(' ');
-            }
-            else if (*flags == '#')
-            {
-                count += _putchar('#');
-            }
-
-            flags++;
-        }
-    }
-
-    count += _print_number(num);
-
-    return (count);
+	if (flags)
+	{
+		while (*flags)
+		{
+			if (*flags == '+')
+			{
+				if (num >= 0)
+					count += _putchar('+');
+			}
+			else if (*flags == ' ')
+			{
+				if (num >= 0)
+					count += _putchar(' ');
+			}
+			else if (*flags == '#')
+			{
+				count += _putchar('#');
+			}
+			flags++;
+		}
+	}
+	count += _print_number(num);
+	return (count);
 }

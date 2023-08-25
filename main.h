@@ -17,11 +17,8 @@ int print_unsigned(unsigned int n);
 int print_hex_lower(unsigned int n);
 int print_octal(unsigned int n);
 int print_hex_upper(unsigned int n);
-<<<<<<< HEAD
 int _print_number(int n);
 int print_int(va_list args, const char *flags);
-=======
 int handle_S_specifier(va_list arg_list);
 char to_hex_digit(unsigned char value);
->>>>>>> 80dfcc9c724eca9136290fb0ff13aa265d20026f
 #endif
