@@ -1,17 +1,6 @@
 #include "main.h"
 
 /**
- * _putchar - Write a character to stdout.
- * @c: The character to write.
- *
- * Return: On success, the number of characters written.
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-/**
  * _putstr - Write a string to stdout.
  * @str: The string to write.
  *
@@ -74,21 +63,25 @@ int print_specifier(char specifier, va_list arg_list)
 	else if (specifier == 'u')
 	{
 		unsigned int u_value = va_arg(arg_list, unsigned int);
+
 		cha_print += print_unsigned(u_value);
 	}
 	else if (specifier == 'x')
 	{
 		unsigned int x_value = va_arg(arg_list, unsigned int);
-                    cha_print += print_hex_lower(x_value);
+
+		cha_print += print_hex_lower(x_value);
 	}
 	else if (specifier == 'o')
 	{
 		unsigned int o_value = va_arg(arg_list, unsigned int);
+
 		cha_print += print_octal(o_value);
 	}
 	else if (specifier == 'X')
 	{
 		unsigned int X_value = va_arg(arg_list, unsigned int);
+
 		cha_print += print_hex_upper(X_value);
 	}
 	else
@@ -139,13 +132,13 @@ int _printf(const char *format, ...)
  */
 int _print_number(int n)
 {
-	int count = 0; 
+	int count = 0;
 	int reversed = 0;
 
 	if (n == 0)
 	{
 		count += _putchar('0');
-		return count;
+		return (count);
 	}
 	if (n < 0)
 	{
@@ -162,7 +155,7 @@ int _print_number(int n)
 		count += _putchar(reversed % 10 + '0');
 		reversed /= 10;
 	}
-	return count;
+	return (count);
 }
 
 /**
