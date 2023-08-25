@@ -1,17 +1,6 @@
 #include "main.h"
 
 /**
- * _putchar - Write a character to stdout.
- * @c: The character to write.
- *
- * Return: On success, the number of characters written.
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-/**
  * _putstr - Write a string to stdout.
  * @str: The string to write.
  *
@@ -74,21 +63,28 @@ int print_specifier(char specifier, va_list arg_list)
 	else if (specifier == 'u')
 	{
 		unsigned int u_value = va_arg(arg_list, unsigned int);
+
 		cha_print += print_unsigned(u_value);
 	}
 	else if (specifier == 'x')
 	{
 		unsigned int x_value = va_arg(arg_list, unsigned int);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8f0b8e662081036999cb0c6211c5498ed93fd08c
 		cha_print += print_hex_lower(x_value);
 	}
 	else if (specifier == 'o')
 	{
 		unsigned int o_value = va_arg(arg_list, unsigned int);
+
 		cha_print += print_octal(o_value);
 	}
 	else if (specifier == 'X')
 	{
 		unsigned int X_value = va_arg(arg_list, unsigned int);
+
 		cha_print += print_hex_upper(X_value);
 	}
 	else
@@ -130,3 +126,77 @@ int _printf(const char *format, ...)
 
 	return (cha_print);
 }
+<<<<<<< HEAD
+=======
+
+/**
+ * _print_number - Print an integer
+ * @n: The integer to be printed
+ *
+ * Return: Number of digits printed
+ */
+int _print_number(int n)
+{
+	int count = 0;
+	int reversed = 0;
+
+	if (n == 0)
+	{
+		count += _putchar('0');
+		return (count);
+	}
+	if (n < 0)
+	{
+		count += _putchar('-');
+		n = -n;
+	}
+	while (n > 0)
+	{
+		reversed = reversed * 10 + n % 10;
+		n /= 10;
+	}
+	while (reversed > 0)
+	{
+		count += _putchar(reversed % 10 + '0');
+		reversed /= 10;
+	}
+	return (count);
+}
+
+/**
+ * print_int - Prints an integer with flags
+ * @args: The va_list containing the integer to print
+ * @flags: The flags to apply
+ *
+ * Return: The number of characters printed
+ */
+int print_int(va_list args, const char *flags)
+{
+	int num = va_arg(args, int);
+	int count = 0;
+
+	if (flags)
+	{
+		while (*flags)
+		{
+			if (*flags == '+')
+			{
+				if (num >= 0)
+					count += _putchar('+');
+			}
+			else if (*flags == ' ')
+			{
+				if (num >= 0)
+					count += _putchar(' ');
+			}
+			else if (*flags == '#')
+			{
+				count += _putchar('#');
+			}
+			flags++;
+		}
+	}
+	count += _print_number(num);
+	return (count);
+}
+>>>>>>> 8f0b8e662081036999cb0c6211c5498ed93fd08c
