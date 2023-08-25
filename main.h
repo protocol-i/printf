@@ -17,4 +17,6 @@ int print_unsigned(unsigned int n);
 int print_hex_lower(unsigned int n);
 int print_octal(unsigned int n);
 int print_hex_upper(unsigned int n);
+int _print_number(int n);
+int print_int(va_list args, const char *flags);
 #endif
