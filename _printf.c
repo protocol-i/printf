@@ -20,79 +20,6 @@ int _putstr(const char *str)
 }
 
 /**
- * print_specifier - Handle specific specifiers.
- * @specifier: The specifier character.
- * @arg_list: The va_list of arguments.
- *
- * Return: Number of characters printed.
- */
-int print_specifier(char specifier, va_list arg_list)
-{
-	int cha_print = 0;
-
-	if (specifier == 'c')
-	{
-		char c = va_arg(arg_list, int);
-
-		cha_print += _putchar(c);
-	}
-	else if (specifier == 's')
-	{
-		char *strg = va_arg(arg_list, char *);
-
-		if (strg == NULL)
-			strg = "(null)";
-		cha_print += _putstr(strg);
-	}
-	else if (specifier == 'd' || specifier == 'i')
-	{
-		int num = va_arg(arg_list, int);
-
-		cha_print += _putnbr(num);
-	}
-	else if (specifier == 'b')
-	{
-		unsigned int num = va_arg(arg_list, unsigned int);
-
-		cha_print += _putnbr_binary(num);
-	}
-	else if (specifier == '%')
-	{
-		cha_print += _putchar('%');
-	}
-	else if (specifier == 'u')
-	{
-		unsigned int u_value = va_arg(arg_list, unsigned int);
-
-		cha_print += print_unsigned(u_value);
-	}
-	else if (specifier == 'x')
-	{
-		unsigned int x_value = va_arg(arg_list, unsigned int);
-
-		cha_print += print_hex_lower(x_value);
-	}
-	else if (specifier == 'o')
-	{
-		unsigned int o_value = va_arg(arg_list, unsigned int);
-
-		cha_print += print_octal(o_value);
-	}
-	else if (specifier == 'X')
-	{
-		unsigned int X_value = va_arg(arg_list, unsigned int);
-
-		cha_print += print_hex_upper(X_value);
-	}
-	else
-	{
-		cha_print += _putchar('%');
-		cha_print += _putchar(specifier);
-	}
-
-	return (cha_print);
-}
-/**
  * _printf - Prints formatted output to the standard output.
  * @format: Format string.
  * @...: A variable number of arguments to be printed.
@@ -122,8 +49,6 @@ int _printf(const char *format, ...)
 	va_end(arg_list);
 	return (cha_print);
 }
-<<<<<<< HEAD
-=======
 
 /**
  * _print_number - Print an integer
@@ -195,4 +120,3 @@ int print_int(va_list args, const char *flags)
 	count += _print_number(num);
 	return (count);
 }
->>>>>>> ffb4fd2e6ed02b2ebe3e34d0bae26c560b17e30b

@@ -19,4 +19,5 @@ int print_octal(unsigned int n);
 int print_hex_upper(unsigned int n);
 int handle_S_specifier(va_list arg_list);
 char to_hex_digit(unsigned char value);
+int print_specifier(char s, va_list a);
 #endif
